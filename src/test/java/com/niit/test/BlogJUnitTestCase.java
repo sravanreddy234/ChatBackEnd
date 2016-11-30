@@ -38,13 +38,13 @@ public class BlogJUnitTestCase {
 		
 	}
 	
-	//@Test
+	/*//@Test
 	public void listBlog() {
 		log.debug("Entered in listBlog method.........");
 		assertEquals(blogDAO.list().size(), 1);
-	}
+	}*/
 		
-	//@Test
+	@Test
 	public void addBlog() {
 		blog.setB_id("blog001");
 		blog.setB_title("#1 Blog");
@@ -57,7 +57,7 @@ public class BlogJUnitTestCase {
 	}
 	
 	//@Test
-	public void updateBlog() {
+	/*public void updateBlog() {
 		blog.setB_id("arpan001");
 		blog.setB_title("#1 Blog");
 		blog.setB_content("This is my first blog...");
@@ -72,7 +72,7 @@ public class BlogJUnitTestCase {
 		blog.setB_id("blog002");
 		
 		assertEquals(blogDAO.delete(blog), true);
-	}
+	}*/
 	
 	//@Test
 	public void getBlog() {
