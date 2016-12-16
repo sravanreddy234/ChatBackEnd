@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-@Table
+@Table(name="users")
 @Component
 public class User implements Serializable {
 	
@@ -31,30 +31,30 @@ public class User implements Serializable {
 	
 	@Id
 	@Length(min = 6, max = 11, message = "Id should contain 6-11 characters")
-	private String userId;
+	private String id;
 	
 	@NotBlank(message = "Name field can not be blank")
 	@Length(min = 3 , message = "Name contains atleast 3 character")
-	private String userName;
+	private String name;
 	
 	@NotBlank(message="Please select a password")
 	@Length(min=5, max=15, message="Password should be between 5 - 15 charactes")
-	private String userPassword;
+	private String password;
 	
 	@NotBlank
-	private String UserGender;
+	private String gender;
 	
 	@Email(message="Please provide a valid email address")
-	private String UserEmail;
+	private String email;
 	
 	@Pattern(regexp="(^$|[0-9]{10})", message = "Please provide a valid phone no.")
-	private String UserContact;
+	private String phone;
 	
-	private String UserRole;
+	private String role;
 	
-	private String u_image;
+	private String image;
 	
-	private String u_pics;
+	private String photos;
 	
 	@Transient
 	private MultipartFile file;
@@ -67,7 +67,69 @@ public class User implements Serializable {
 
 	/* getters/setters for all the fields taken... */
 		
-	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public MultipartFile getFile() {
 		return file;
@@ -77,78 +139,12 @@ public class User implements Serializable {
 		this.file = file;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getPhotos() {
+		return photos;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getUserPassword() {
-		return userPassword;
-	}
-
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
-	}
-
-	public String getUserGender() {
-		return UserGender;
-	}
-
-	public void setUserGender(String userGender) {
-		UserGender = userGender;
-	}
-
-	public String getUserEmail() {
-		return UserEmail;
-	}
-
-	public void setUserEmail(String userEmail) {
-		UserEmail = userEmail;
-	}
-
-	public String getUserContact() {
-		return UserContact;
-	}
-
-	public void setUserContact(String userContact) {
-		UserContact = userContact;
-	}
-
-	public String getUserRole() {
-		return UserRole;
-	}
-
-	public void setUserRole(String userRole) {
-		UserRole = userRole;
-	}
-
-	public String getU_image() {
-		return u_image;
-	}
-
-	public void setU_image(String u_image) {
-		this.u_image = u_image;
-	}
-
-	public String getU_pics() {
-		return u_pics;
-	}
-
-	public void setU_pics(String u_pics) {
-		this.u_pics = u_pics;
-	}
-
-	
 	
 }

@@ -6,14 +6,14 @@ import org.springframework.stereotype.Repository;
 
 import com.niit.model.Blog;
 
-
-
 @Repository		//@Repository annotation is a specialization of the @Component annotation with similar use and functionality...
 public interface BlogDAO {
 
 	/**
-	 *  Declare all CRUD Operations...
-	 */	
+	 * Declare all CRUD Operations...
+	 * 
+	 */	   
+	 	
 	public boolean save(Blog blog);
 	
 	public boolean update(Blog blog);
@@ -22,7 +22,9 @@ public interface BlogDAO {
 	
 	public boolean delete(Blog blog);
 	
-	public Blog get(String id);
+	public Blog get(int id);
 	
 	public List<Blog> list();
+	
+	//public Blog getLike(int id);
 }

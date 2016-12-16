@@ -5,13 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table
+@Table(name = "b_forum")
 @Component
 public class Forum extends BaseDomain implements Serializable{
 
@@ -25,14 +28,22 @@ public class Forum extends BaseDomain implements Serializable{
 	 */
 	
 	@Id
-	private String f_id;
+	@SequenceGenerator(name="SEQ_GEN", sequenceName="SEQ_AUTO_FORUM_ID", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_GEN")
+	private int id;
 	
-	private String f_description;
+	private String description;
 	
 	@Column(name = "post_date")
 	private Date postDate;
 	
-	private String f_userId;
+	private String userId;
+	
+	@Column(name = "COUNT_FORUM_LIKE")
+	private int countLike;
+	
+	@Column(name = "COUNT_COMMENT")
+	private int countComment;
 	
 	/**
 	 *  getters/setters for all the fields taken... 
@@ -41,33 +52,37 @@ public class Forum extends BaseDomain implements Serializable{
 	public Date getPostDate() {
 		return postDate;
 	}
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public void setPostDate(Date postDate) {
 		this.postDate = postDate;
 	}
-
-	public String getF_id() {
-		return f_id;
+	public String getDescription() {
+		return description;
 	}
-
-	public void setF_id(String f_id) {
-		this.f_id = f_id;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-
-	public String getF_description() {
-		return f_description;
+	public int getCountLike() {
+		return countLike;
 	}
-
-	public void setF_description(String f_description) {
-		this.f_description = f_description;
+	public void setCountLike(int countLike) {
+		this.countLike = countLike;
 	}
-
-	public String getF_userId() {
-		return f_userId;
+	public int getCountComment() {
+		return countComment;
 	}
-
-	public void setF_userId(String f_userId) {
-		this.f_userId = f_userId;
+	public void setCountComment(int countComment) {
+		this.countComment = countComment;
 	}
-	
 }

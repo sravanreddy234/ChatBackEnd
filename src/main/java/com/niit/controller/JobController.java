@@ -1,4 +1,4 @@
-/*package com.niit.controller;
+package com.niit.controller;
 
 import java.util.List;
 
@@ -34,11 +34,11 @@ public class JobController {
 	@Autowired
 	JobDAO jobDAO;
 
-	*//**
+	/**
 	 * http://localhost:8081/Binder/jobs 					//working
 	 * 
 	 * @return
-	 *//*
+	 */
 	@GetMapping(value = "/jobs")
 	public ResponseEntity<List<Job>> listJobs() {
 		log.debug("**********Starting of listJobs() method.");
@@ -60,12 +60,12 @@ public class JobController {
 		return new ResponseEntity<List<JobApplication>>(jobApplications, HttpStatus.OK);
 	}
 
-	*//**
+	/**
 	 * http://localhost:8081/Binder/job/ 					//working
 	 * 
 	 * @param job
 	 * @return
-	 *//*
+	 */
 	@PostMapping(value = "/job/")
 	public ResponseEntity<Job> createJob(@RequestBody Job job) {
 		log.debug("**********Starting of createJob() method.");
@@ -79,13 +79,13 @@ public class JobController {
 		return new ResponseEntity<Job>(HttpStatus.OK);
 	}
 
-	*//**
+	/**
 	 * http://localhost:8081/Binder/job/{id} 					//working
 	 * 
 	 * @param id
 	 * @param job
 	 * @return
-	 *//*
+	 */
 	@PutMapping(value = "/job/{id}")
 	public ResponseEntity<Job> updateJob(@PathVariable("id") int id, @RequestBody Job job) {
 		log.debug("**********Starting of updateJob() method.");
@@ -100,12 +100,12 @@ public class JobController {
 		return new ResponseEntity<Job>(job, HttpStatus.OK);
 	}
 
-	*//**
+	/**
 	 * http://localhost:8081/Binder/job/{id} 					//working
 	 * 
 	 * @param id
 	 * @return
-	 *//*
+	 */
 	@GetMapping(value = "/job/{id}")
 	public ResponseEntity<Job> getJob(@PathVariable("id") int id) {
 		log.debug("**********Starting of getJob() method.");
@@ -120,12 +120,12 @@ public class JobController {
 		return new ResponseEntity<Job>(job, HttpStatus.OK);
 	}
 
-	*//**
+	/**
 	 * http://localhost:8081/Binder/getMyAppliedJobs
 	 * 
 	 * @param httpSession
 	 * @return
-	 *//*
+	 */
 	@GetMapping(value = "/getMyAppliedJobs")
 	public ResponseEntity<List<Job>> getMyAppliedJobs(HttpSession httpSession) {
 		log.debug("**********Starting of getMyAppliedJobs() method.");
@@ -138,13 +138,13 @@ public class JobController {
 		return new ResponseEntity<List<Job>>(jobs, HttpStatus.OK);
 	}
 
-	*//**
+	/**
 	 * http://localhost:8081/Binder/callForInterview/{userId}/{jobId}
 	 * @param userId
 	 * @param jobId
 	 * @param jobApplication
 	 * @return
-	 *//*
+	 */
 	@PutMapping(value = "/callForInterview/{userId}/{jobId}")
 	public ResponseEntity<Job> callForInterview(@PathVariable("userId") String userId,
 			@PathVariable("jobId") String jobId, @RequestBody JobApplication jobApplication) {
@@ -160,13 +160,13 @@ public class JobController {
 		return new ResponseEntity<Job>(job, HttpStatus.OK);
 	}
 
-	*//**
+	/**
 	 * http://localhost:8081/Binder/rejectJobApplication/{userId}/{jobId}
 	 * @param userId
 	 * @param jobId
 	 * @param jobApplication
 	 * @return
-	 *//*
+	 */
 	@PutMapping(value = "/rejectJobApplication/{userId}/{jobId}")
 	public ResponseEntity<Job> rejectJobApplication(@PathVariable("userId") String userId,
 			@PathVariable("jobId") String jobId, @RequestBody JobApplication jobApplication) {
@@ -182,11 +182,11 @@ public class JobController {
 		return new ResponseEntity<Job>(job, HttpStatus.OK);
 	}
 
-	*//**
+	/**
 	 * http://localhost:8081/Binder/listVacantJobs //working
 	 * 
 	 * @return
-	 *//*
+	 */
 	@GetMapping(value = "/listVacantJobs")
 	public ResponseEntity<List<Job>> listVacantJobs() {
 		log.debug("**********Starting of listVacantJobs() method.");
@@ -198,17 +198,15 @@ public class JobController {
 		return new ResponseEntity<List<Job>>(vacantJobs, HttpStatus.OK);
 	}
 
-	*//**
+	/**
 	 * http://localhost:8081/Binder/jobApplied
 	 * 
 	 * @param jobApplication
 	 * @param httpSession
 	 * @return
-	 *//*
+	 */
 	@PostMapping(value = "/jobApplied")
-	public ResponseEntity<Job> applyForJob(@RequestBody Job job, HttpSession httpSession) {
-		
-		
+	public ResponseEntity<Job> applyForJob(@RequestBody Job job, HttpSession httpSession) {		
 		log.debug("**********Starting of applyForJob() method.");
 
 		Users loggedInUser = (Users) httpSession.getAttribute("loggedInUser");
@@ -221,4 +219,4 @@ public class JobController {
 		log.debug("**********End of applyForJob() method.");
 		return new ResponseEntity<Job>(HttpStatus.OK);
 	}
-}*/
+}

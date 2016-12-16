@@ -5,7 +5,6 @@ import java.util.List;
 import com.niit.model.FriendRequest;
 
 
-
 public interface FriendRequestDAO {
 
 	// Declare all CRUD Operations...

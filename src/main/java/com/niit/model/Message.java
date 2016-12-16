@@ -4,6 +4,8 @@ public class Message {
 
 	private String message;
 	private int id;
+	private String name;
+	
 	public Message() {
 		
 	}
@@ -12,7 +14,11 @@ public class Message {
 		this.id = id;
 	}
 	
-	
+	/**
+	 *  
+	 *  getters/setters for all the fields taken... 
+	 *  
+	 */
 	public String getMessage() {
 		return message;
 	}
@@ -24,6 +30,12 @@ public class Message {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

@@ -1,7 +1,9 @@
 package com.niit.daoImpl;
 
+import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.dao.ChatDAO;
 import com.niit.model.Chat;
 
-
-
 @EnableTransactionManagement
 @Repository(value="chatDAO")
 public class ChatDAOImpl implements ChatDAO {
+	
+	Logger log = Logger.getLogger(ChatDAOImpl.class);
 	
 	@Autowired	//@Autowired annotation provides more fine-grained control over where and how autowiring should be accomplished..
 	private SessionFactory sessionFactory;
@@ -43,6 +45,10 @@ public class ChatDAOImpl implements ChatDAO {
 	@Transactional
 	public boolean save(Chat chat){
 		try {
+			log.debug("**********Starting of save() method.");
+			
+			chat.setDateTime(new Date(System.currentTimeMillis()));
+			
 			sessionFactory.getCurrentSession().save(chat);
 			return true;
 		} catch (Exception e) {
@@ -55,17 +61,6 @@ public class ChatDAOImpl implements ChatDAO {
 	public boolean update(Chat chat){
 		try {
 			sessionFactory.getCurrentSession().update(chat);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	@Transactional
-	public boolean saveOrUpdate(Chat chat) {
-		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(chat);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,14 +1,27 @@
 package com.niit.model;
 
-public class OutputMessage extends Message {
+import java.util.Date;
 
-	public OutputMessage() {
-		super();
-		// TODO Auto-generated constructor stub
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+public class OutputMessage extends Message {
+    
+	private Date time;
+
+	public OutputMessage(Message original, Date time) {
+		super(original.getMessage(), original.getId());
+		this.time = time;
 	}
 
-	public OutputMessage(Message message) {
-		super(message.getMessage(),message.getId());
-		// TODO Auto-generated constructor stub
+	/**
+	 *  
+	 *  getters/setters for all the fields taken... 
+	 *  
+	 */
+	public Date getTime() {
+		return time;
+	}
+	public void setTime(Date time) {
+		this.time = time;
 	}
 }

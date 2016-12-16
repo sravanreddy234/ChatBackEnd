@@ -1,4 +1,5 @@
 package com.niit.test;
+/*package com.niit.binder.junit.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,10 +8,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.dao.ForumDAO;
-import com.niit.model.Forum;
-
-
+import com.niit.binder.dao.ForumDAO;
+import com.niit.binder.model.Forum;
 
 public class ForumJUnitTestCase {
 	
@@ -42,12 +41,12 @@ public class ForumJUnitTestCase {
 	
 	//@Test
 	public void addForum() {
-		forum.setF_id("forum002");
+		//forum.setId("forum002");
 		
 		assertEquals(forumDAO.save(forum), true);
 	}
 	
-	/*//@Test
+	//@Test
 	public void updateForum() {
 		//forum.setId("forum002");
 		
@@ -65,5 +64,6 @@ public class ForumJUnitTestCase {
 	public void getForum() {
 		
 		assertEquals(forumDAO.get("forum001").getId(), "forum001");
-	}*/
+	}
 }
+*/

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-@Table
+@Table(name = "B_USER")
 @Component
 public class Users extends BaseDomain implements Serializable {
 	
@@ -39,13 +39,15 @@ public class Users extends BaseDomain implements Serializable {
 	private String email;
 	
 	@Pattern(regexp="(^$|[0-9]{10})", message = "Please provide a valid phone no.")
-	private String contact;
+	private String phone;
 	
 	private String role;
 	
+	private String isOnline;
+	
 	private String image;
 	
-	private String pics;
+	private String photos;
 	
 	@Transient
 	private MultipartFile file;
@@ -84,12 +86,23 @@ public class Users extends BaseDomain implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getRole() {
 		return role;
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public String getIsOnline() {
+		return isOnline;
+	}
+	public void setIsOnline(String isOnline) {
+		this.isOnline = isOnline;
 	}
 	public String getImage() {
 		return image;
@@ -103,18 +116,11 @@ public class Users extends BaseDomain implements Serializable {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-	public String getContact() {
-		return contact;
+	public String getPhotos() {
+		return photos;
 	}
-	public void setContact(String contact) {
-		this.contact = contact;
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
-	public String getPics() {
-		return pics;
-	}
-	public void setPics(String pics) {
-		this.pics = pics;
-	}
-	
 	
 }

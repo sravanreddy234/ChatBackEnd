@@ -5,13 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table
+@Table(name = "B_FORUMCOMMENT")
 @Component
 public class ForumComment extends BaseDomain implements Serializable {
 
@@ -25,14 +28,16 @@ public class ForumComment extends BaseDomain implements Serializable {
 	 */
 	
 	@Id
-	private String fc_id;
+	@SequenceGenerator(name="SEQ_GEN", sequenceName="SEQ_AUTO_FORUM_COMMENT_ID", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_GEN")
+	private int id;
 	
-	private String forumId;
+	private int forumId;
 		
 	@Column(name = "forum_comment")
 	private String comment;
 	
-	private String fc_userId;
+	private String userId;
 	
 	@Column(name = "commented_date")
 	private Date commentDate;
@@ -41,11 +46,19 @@ public class ForumComment extends BaseDomain implements Serializable {
 	 *  getters/setters for all the fields taken... 
 	 */
 	
-	
-	public String getForumId() {
+	public String getUserId() {
+		return userId;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getForumId() {
 		return forumId;
 	}
-	public void setForumId(String forumId) {
+	public void setForumId(int forumId) {
 		this.forumId = forumId;
 	}
 	public String getComment() {
@@ -60,17 +73,7 @@ public class ForumComment extends BaseDomain implements Serializable {
 	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
 	}
-	public String getFc_id() {
-		return fc_id;
-	}
-	public void setFc_id(String fc_id) {
-		this.fc_id = fc_id;
-	}
-	public String getFc_userId() {
-		return fc_userId;
-	}
-	public void setFc_userId(String fc_userId) {
-		this.fc_userId = fc_userId;
-	}
-	
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}	
 }

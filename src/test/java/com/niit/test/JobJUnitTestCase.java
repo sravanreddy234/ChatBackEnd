@@ -11,7 +11,6 @@ import com.niit.dao.JobDAO;
 import com.niit.model.Job;
 
 
-
 public class JobJUnitTestCase {
 	
 	Logger log =  Logger.getLogger(JobJUnitTestCase.class);
@@ -40,12 +39,16 @@ public class JobJUnitTestCase {
 	public void listJob() {
 		log.debug("Starting of listJob() method...........");
 		
-		assertEquals(jobDAO.list().size(), 2);
+		assertEquals(jobDAO.list().size(), 10);
 	}	
 	
 	//@Test
 	public void addJob() {
 		log.debug("Starting of addJob() method...........");
+		
+		job.setCompanyName("Cisco India");
+		job.setLocation("Bangalore");
+		job.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo.");
 		
 		assertEquals(jobDAO.save(job), true);
 	}
@@ -55,14 +58,6 @@ public class JobJUnitTestCase {
 		log.debug("Starting of updateJob() method...........");
 		
 		assertEquals(jobDAO.update(job), true);
-	}
-	
-	//@Test
-	public void deleteJob() {
-		log.debug("Starting of deleteJob() method...........");
-		
-		job.setJobId("prantik001");
-		assertEquals(jobDAO.delete(job), true);
 	}
 	
 	//@Test

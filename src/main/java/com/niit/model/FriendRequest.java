@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table
+@Table(name = "b_friendrequest")
 @Component
 public class FriendRequest extends BaseDomain implements Serializable {
 	
@@ -27,7 +27,7 @@ public class FriendRequest extends BaseDomain implements Serializable {
 	
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
-	private String fr_id;
+	private String id;
 	
 	@Column(name = "request_to")
 	private String requestTo;
@@ -39,15 +39,14 @@ public class FriendRequest extends BaseDomain implements Serializable {
 	 *  getters/setters for all the fields taken... 
 	 */
 
-	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getRequestTo() {
 		return requestTo;
-	}
-	public String getFr_id() {
-		return fr_id;
-	}
-	public void setFr_id(String fr_id) {
-		this.fr_id = fr_id;
 	}
 	public void setRequestTo(String requestTo) {
 		this.requestTo = requestTo;

@@ -4,13 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table
+@Table(name = "B_CHAT")
 @Component
 public class Chat extends BaseDomain implements Serializable {
 
@@ -24,15 +27,17 @@ public class Chat extends BaseDomain implements Serializable {
 	 */
 
 	@Id
-	private String c_id;
+	@SequenceGenerator(name="SEQ_GEN", sequenceName="SEQ_AUTO_CHAT_ID", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_GEN")
+	private String id;
 	
 	private String senderId;
 	
 	private String receiverId;
 	
-	private String c_content;
+	private String content;
 	
-	private Date c_dateTime;
+	private Date dateTime;
 
 	/**
 	 *  getters/setters for all the fields taken... 
@@ -41,7 +46,12 @@ public class Chat extends BaseDomain implements Serializable {
 	public String getSenderId() {
 		return senderId;
 	}
-	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public void setSenderId(String senderId) {
 		this.senderId = senderId;
 	}
@@ -51,29 +61,16 @@ public class Chat extends BaseDomain implements Serializable {
 	public void setReceiverId(String receiverId) {
 		this.receiverId = receiverId;
 	}
-
-	public String getC_id() {
-		return c_id;
+	public String getContent() {
+		return content;
 	}
-
-	public void setC_id(String c_id) {
-		this.c_id = c_id;
+	public void setContent(String content) {
+		this.content = content;
 	}
-
-	public String getC_content() {
-		return c_content;
+	public Date getDateTime() {
+		return dateTime;
 	}
-
-	public void setC_content(String c_content) {
-		this.c_content = c_content;
+	public void setDateTime(Date dateTime) {
+		this.dateTime = dateTime;
 	}
-
-	public Date getC_dateTime() {
-		return c_dateTime;
-	}
-
-	public void setC_dateTime(Date c_dateTime) {
-		this.c_dateTime = c_dateTime;
-	}
-	
 }

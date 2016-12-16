@@ -6,8 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import com.niit.model.ForumComment;
 
-
-
 @Repository		//@Repository annotation is a specialization of the @Component annotation with similar use and functionality...
 public interface ForumCommentDAO {
 

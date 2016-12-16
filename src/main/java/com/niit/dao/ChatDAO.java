@@ -6,8 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import com.niit.model.Chat;
 
-
-
 @Repository		//@Repository annotation is a specialization of the @Component annotation with similar use and functionality...
 public interface ChatDAO {
 
@@ -16,8 +14,6 @@ public interface ChatDAO {
 	public boolean save(Chat chat);
 	
 	public boolean update(Chat chat);
-	
-	public boolean saveOrUpdate(Chat chat);
 	
 	public boolean delete(Chat chat);
 	

@@ -5,13 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table
+@Table(name = "b_event")
 @Component
 public class Event extends BaseDomain implements Serializable {
 
@@ -25,14 +28,15 @@ public class Event extends BaseDomain implements Serializable {
 	 */
 	
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
-	private String e_id;
+	@SequenceGenerator(name="SEQ_GEN", sequenceName="SEQ_AUTO_EVENT_ID", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_GEN")
+	private int id;
 	
-	private String e_name;
+	private String name;
 	
-	private String e_venue;
+	private String venue;
 	
-	private String e_description;
+	private String description;
 	
 	@Column(name = "event_date")
 	private Date date;
@@ -41,36 +45,34 @@ public class Event extends BaseDomain implements Serializable {
 	 *  getters/setters for all the fields taken... 
 	 */
 
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getVenue() {
+		return venue;
+	}
 	public Date getDate() {
 		return date;
 	}
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getE_id() {
-		return e_id;
-	}
-	public void setE_id(String e_id) {
-		this.e_id = e_id;
-	}
-	public String getE_name() {
-		return e_name;
-	}
-	public void setE_name(String e_name) {
-		this.e_name = e_name;
-	}
-	public String getE_venue() {
-		return e_venue;
-	}
-	public void setE_venue(String e_venue) {
-		this.e_venue = e_venue;
-	}
-	public String getE_description() {
-		return e_description;
-	}
-	public void setE_description(String e_description) {
-		this.e_description = e_description;
-	}
-		
+	public void setVenue(String venue) {
+		this.venue = venue;
+	}	
 }

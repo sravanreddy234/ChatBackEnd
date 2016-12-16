@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.niit.dao.UserDAO;
 import com.niit.daoImpl.UserDAOImpl;
 import com.niit.model.Blog;
-import com.niit.model.Chat;
 import com.niit.model.Event;
 import com.niit.model.Forum;
 import com.niit.model.ForumComment;
@@ -28,51 +27,36 @@ import com.niit.model.Users;
 
 
 
-@Configuration
-@ComponentScan("com.niit.binder")
+@Configuration						//@Configuration indicates that the class can be used by the Spring IoC container as a source of bean definitions.
+@ComponentScan("com.niit.LetzChat")		//@ComponentScan annotation is used to specify the base packages to scan.
 //@ComponentScan(basePackages = "com.niit.binder", excludeFilters = @Filter(type = FilterType.ANNOTATION, value = AppConfig.class))
-@EnableTransactionManagement
+@EnableTransactionManagement		/**when we are using @Configuration i.e XML free configuration and need to 
+									 * connect to database with hibernate. We need to use @EnableTransactionManagement.
+									 */
 public class ApplicationContextConfig {
-	/*@Bean(name="dataSource")
+	@Bean(name="dataSource")			//setup dataSource to desired database
 	public DataSource getDataSource(){
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-				--- Database connection settings ---
+		/**
+		 * Simple implementation of the standard JDBC DataSource interface, configuring the plain old JDBC DriverManager via 
+		 * bean properties, and returning a new Connection from every getConnection call.
+		 */
+				/*--- Database connection settings ---*/
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");		//specify the driver...
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");		//specify the db_url...
-		dataSource.setUsername("SRAVAN");		//specify the db_username...
-		dataSource.setPassword("sravan");		//specify the db_password...
+		dataSource.setUsername("COLL");		//specify the db_username...
+		dataSource.setPassword("COLL");		//specify the db_password...
 		
 
 		Properties connectionProperties = new Properties();
 		connectionProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		connectionProperties.setProperty("hibernate.show_sql", "true");
-		connectionProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle11gDialect");
+		connectionProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
 		connectionProperties.setProperty("hibernate.format_sql", "true");
 		connectionProperties.setProperty("hibernate.jdbc.use_get_generated_keys", "true");
 		dataSource.setConnectionProperties(connectionProperties);		
 		return dataSource;                                    // we are using oracle db for our project...
-	}*/
-	
-	
-	@Bean(name = "dataSource")
-	public DataSource dataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("org.h2.Driver");
-		dataSource.setUrl("jdbc:h2:tcp://localhost/~/sra");
-		dataSource.setUsername("sa");
-		dataSource.setPassword("sa");
-		return dataSource;
 	}
-
-	private Properties getHibernateProperties() {
-		Properties properties = new Properties();
-		properties.put("hibernate.showsql", "true");
-		properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-		properties.put("hibernate.hbm2ddl.auto", "update");
-		return properties;
-	}
-	
-	
 	
 	@Autowired		//@Autowired annotation provides more fine-grained control over where and how autowiring should be accomplished..
 	@Bean(name = "sessionFactory")			//sessionfactory creates the session for the application...
@@ -82,7 +66,6 @@ public class ApplicationContextConfig {
 		//specify all the model classes... 
 		sessionBuilder.addAnnotatedClass(Users.class);			
 		sessionBuilder.addAnnotatedClass(Blog.class);	
-		sessionBuilder.addAnnotatedClass(Chat.class);	
 		sessionBuilder.addAnnotatedClass(Event.class);	
 		sessionBuilder.addAnnotatedClass(Friend.class);	
 		sessionBuilder.addAnnotatedClass(Job.class);		

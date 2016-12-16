@@ -3,15 +3,12 @@ package com.niit.test;
 import static org.junit.Assert.assertEquals;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.spi.LoggerFactory;
 import org.junit.Before;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.niit.dao.BlogDAO;
 import com.niit.model.Blog;
-
 
 
 public class BlogJUnitTestCase {
@@ -38,45 +35,44 @@ public class BlogJUnitTestCase {
 		
 	}
 	
-	/*//@Test
+	//@Test
 	public void listBlog() {
 		log.debug("Entered in listBlog method.........");
 		assertEquals(blogDAO.list().size(), 1);
-	}*/
+	}
 		
-	@Test
+	//@Test
 	public void addBlog() {
-		blog.setB_id("blog001");
-		blog.setB_title("#1 Blog");
-		blog.setB_reason("Testing purpose");
-		blog.setB_content("This is my first blog...");
-		blog.setB_userId("sovan001");
-		blog.setB_status("approved");
+		//blog.setId(3);
+		blog.setTitle("#7 Blog");
+		blog.setReason("Testing purpose");
+		blog.setContent("This is my seventh blog...");
+		blog.setUserId("sudip001");
 		
 		assertEquals(blogDAO.save(blog), true);
 	}
 	
 	//@Test
-	/*public void updateBlog() {
-		blog.setB_id("arpan001");
-		blog.setB_title("#1 Blog");
-		blog.setB_content("This is my first blog...");
-		blog.setB_userId("sovan001");
-		blog.setB_status("approved");
+	public void updateBlog() {
+		//blog.setId("arpan001");
+		blog.setTitle("#1 Blog");
+		blog.setContent("This is my first blog...");
+		blog.setUserId("sovan001");
+		blog.setStatus("approved");
 		
 		assertEquals(blogDAO.update(blog), true);
 	}
 	
 	//@Test
 	public void deleteBlog() {
-		blog.setB_id("blog002");
+		blog.setId(1);
 		
 		assertEquals(blogDAO.delete(blog), true);
-	}*/
+	}
 	
 	//@Test
 	public void getBlog() {
 		
-		assertEquals(blogDAO.get("blog001").getB_title(), "#1 Blog");
+		//assertEquals(blogDAO.get("blog001").getTitle(), "#1 Blog");
 	}
 }

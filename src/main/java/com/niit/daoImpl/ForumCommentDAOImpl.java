@@ -14,7 +14,6 @@ import com.niit.dao.ForumCommentDAO;
 import com.niit.model.ForumComment;
 
 
-
 @EnableTransactionManagement
 @Repository(value="forumCommentDAO")
 public class ForumCommentDAOImpl implements ForumCommentDAO {

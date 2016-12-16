@@ -1,5 +1,6 @@
 package com.niit.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,7 +9,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.niit.dao.FriendDAO;
 import com.niit.dao.UserDAO;
+import com.niit.model.Friend;
 import com.niit.model.Users;
-
 
 
 @RestController
@@ -26,23 +27,20 @@ public class UserController {
 
 	Logger log = Logger.getLogger(UserController.class);
 	
+	//@Autowired
+	//Users users;
+	
 	@Autowired
 	UserDAO userDAO;
 	
-	/**
-	 * ----- url's related to users -----
-	 * 
-	 *	a. fetch all users : http://localhost:8081/Binder/users					//-----Y-----
-	 *	b. save user : http://localhost:8081/Binder/user/						//-----Y-----
-	 *	c. update existing user : http://localhost:8081/Binder/user/{id}		//-----Y-----
-	 * 	d. delete user : http://localhost:8081/Binder/user/{id}					//-----Y-----
-	 * 	e. fetch user by id : http://localhost:8081/Binder/user/{id}			//-----Y-----
-	 * 	f. authenticate user : http://localhost:8081/Binder/user/authenticate/	//-----Y-----
-	 * 
-	 */
+	@Autowired
+	Friend friend;
+	
+	@Autowired
+	FriendDAO friendDAO;
 	
 	/**
-	 * 	http://localhost:8081/Binder/users
+	 * 	http://localhost:8081/Binder/users			//working
 	 * @return
 	 */
 	@GetMapping(value = "/users")
@@ -57,7 +55,32 @@ public class UserController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/user/
+	 * 	http://localhost:8081/Binder/searchForFriends			//working
+	 * @return
+	 */
+	@GetMapping(value = "/searchForFriends")
+	public ResponseEntity<List<Users>> listSearchForFriends(HttpSession session) {
+		ArrayList<Users> list = new ArrayList<Users>();
+		log.debug("**********Starting of listSearchForFriends() method.");
+		List<Users> users = userDAO.list();
+		if(users.isEmpty()) {
+			return new ResponseEntity<List<Users>>(HttpStatus.NO_CONTENT);
+		}
+		Users loggedInUser = (Users) session.getAttribute("loggedInUser");
+		for(Users  u:users)
+		{
+			String userId = u.getId();
+			boolean status = friendDAO.isFriend(userId, loggedInUser.getId());
+			if (!status  && userId.compareTo(loggedInUser.getId())!=0) {
+				list.add(u);
+			}
+		}
+		log.debug("**********End of listSearchForFriends() method.");
+		return new ResponseEntity<List<Users>>(list, HttpStatus.OK);
+	}
+	
+	/**
+	 * 	http://localhost:8081/Binder/user/			//working
 	 * @param users
 	 * @return
 	 */
@@ -75,13 +98,13 @@ public class UserController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/user/{id}
+	 * 	http://localhost:8081/Binder/user/{id}			//working
 	 * @param id
 	 * @param users
 	 * @return
 	 */
 	@PutMapping(value = "/user/{id}")
-	public ResponseEntity<Users> updateUser(@PathVariable("id") String id, @RequestBody Users users) {
+	public ResponseEntity<Users> updateUser(@PathVariable("id") String id, @RequestBody Users users, HttpSession session) {
 		log.debug("**********Starting of updateUser() method.");
 		if(userDAO.get(id) == null) {
 			users = new Users();
@@ -89,33 +112,16 @@ public class UserController {
 			log.error("User does not exist with id : " +users.getId());
 			return new ResponseEntity<Users>(users, HttpStatus.NOT_FOUND);
 		}
+		Users loggedInUser = (Users) session.getAttribute("loggedInUser");
+		users.setId(loggedInUser.getId());
+		users.setRole(loggedInUser.getRole());
 		userDAO.update(users);
 		log.debug("**********End of updateUser() method.");
 		return new ResponseEntity<Users>(users, HttpStatus.OK);
 	}
-	
+		
 	/**
-	 * 	http://localhost:8081/Binder/user/{id}
-	 * @param id
-	 * @return
-	 */
-	@DeleteMapping(value = "/user/{id}")
-	public ResponseEntity<Users> deleteUser(@PathVariable("id") String id) {
-		log.debug("**********Starting of deleteUser() method.");
-		Users users = userDAO.get(id);
-		if(users == null) {
-			users = new Users();
-			users.setErrorMessage("User does not exist with id : " + id);
-			log.error("User does not exist with id : " + id);
-			return new ResponseEntity<Users>(users, HttpStatus.NOT_FOUND);
-		}
-		userDAO.delete(users);
-		log.debug("**********End of deleteUser() method.");
-		return new ResponseEntity<Users>(HttpStatus.OK);		
-	}
-	
-	/**
-	 * 	http://localhost:8081/Binder/user/{id}
+	 * 	http://localhost:8081/Binder/user/{id}			//working
 	 * @param id
 	 * @return
 	 */
@@ -134,27 +140,55 @@ public class UserController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/user/authenticate/
+	 * 	http://localhost:8081/Binder/user/login			//working
 	 * @param users
 	 * @param session
 	 * @return
 	 */
-	@PostMapping(value = "/user/authenticate/")
-	public ResponseEntity<Users> authenticateUser(@RequestBody Users users, HttpSession session) {
-		log.debug("**********Starting of authenticateUser() method.");
+	@PostMapping(value = "/user/login")
+	public ResponseEntity<Users> login(@RequestBody Users users, HttpSession session) {
+		log.debug("**********Starting of login() method.");
 		users = userDAO.authenticate(users.getId(), users.getPassword());
 		if(users == null) {
-			users = new Users();
+			users = new Users();	//we need to create new users object to set errorMsg and errorCode...
+			users.setErrorCode("404");
 			users.setErrorMessage("Invalid userId or password...");
 			log.error("Invalid userId or password...");
 		}
 		else {
 			session.setAttribute("loggedInUser", users);
 			session.setAttribute("loggedInUserID", users.getId());
+			session.setAttribute("LoggedInStatus", users.getIsOnline());
+			
+			friendDAO.setOnline(users.getId());
+			userDAO.setOnline(users.getId());
 		}
-		log.debug("**********End of authenticateUser() method.");
+		log.debug("**********End of login() method.");
 		return new ResponseEntity<Users>(users, HttpStatus.OK);
 	}
+	
+	/**
+	 * http://localhost:8081/Binder/user/logout			//not working
+	 * @param users
+	 * @param session
+	 * @return
+	 */
+	@GetMapping(value = "/user/logout")
+	public ResponseEntity<Users> logout(HttpSession session) {
+		log.debug("**********Starting of logout() method.");
+		
+	String userId = (String) session.getAttribute("loggedInUserID");
+		
+		log.debug("**********"+userId+"**********");
+		
+		friendDAO.setOffline(userId);
+		userDAO.setOffline(userId);
+		
+		session.invalidate();
+		log.debug("**********End of logout() method.");
+		return new ResponseEntity<Users> (HttpStatus.OK);
+	}
+	
 }
 
 

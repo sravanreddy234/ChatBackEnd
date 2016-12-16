@@ -12,8 +12,6 @@ import com.niit.dao.UserDAO;
 import com.niit.model.Users;
 
 
-
-
 public class UserJUnitTestCase {
 	
 	Logger log =  Logger.getLogger(UserJUnitTestCase.class);
@@ -49,40 +47,34 @@ public class UserJUnitTestCase {
 	
 	@Test
 	public void addUser() {
-		users.setId("abc");
-		users.setName("Sravan");
-		users.setPassword("sravan");
+		users.setId("abc001");
+		users.setName("Sudipta Samanta");
+		users.setPassword("sudipta001");
 		users.setGender("male");
-		users.setEmail("sr@gmail.com");
-		users.setContact("8367678899");
+		users.setEmail("sudiptajijo@gmail.com");
+		users.setPhone("8350054367");
 		users.setRole("EMPLOYEE");
 		
 		assertEquals(userDAO.save(users), true);
 	}
 	
 	//@Test
-	/*public void updateUser() {
+	public void updateUser() {
 		users.setId("arpan001");
 		users.setName("Sudipta Samanta");
 		users.setPassword("jijo001");
 		users.setGender("male");
 		users.setEmail("sudiptajijo@gmail.com");
-		users.setContact("8350054367");
+		users.setPhone("8350054367");
 		users.setRole("EMPLOYEE");
 		
 		assertEquals(userDAO.update(users), true);
-	}*/
-	
-	//@Test
-	/*public void deleteUser() {
-		users.setId("prantik001");
-		
-		assertEquals(userDAO.delete(users), true);
 	}
+	
 	
 	//@Test
 	public void getUser() {
 		
 		assertEquals(userDAO.get("sovan001").getName(), "Sovan Jana");
-	}*/
+	}
 }

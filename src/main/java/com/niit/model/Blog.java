@@ -1,18 +1,21 @@
 package com.niit.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+
 @Entity
-@Table
+@Table(name = "B_BLOG")
 @Component
 public class Blog extends BaseDomain implements Serializable {
 
@@ -26,85 +29,76 @@ public class Blog extends BaseDomain implements Serializable {
 	 */
 	
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
-	private String b_id;
+	@SequenceGenerator(name="SEQ_GEN", sequenceName="SEQ_AUTO_BLOG_ID", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_GEN")
+	private int id;
 	
-	private String b_title;
+	private String title;
 	
-	private String b_reason;
+	private String reason;
 	
-	private String b_content;
+	private String content;
 	
 	@Column(name = "post_date")
-	private Timestamp postDate;
+	private Date postDate;
 	
-	private String b_userId;
+	private String userId;
 		
-	private String b_status;
+	private String status;
+	
+	@Column(name = "COUNT_BLOG_LIKE")
+	private int countLike;
 	
 	/**
 	 *  getters/setters for all the fields taken... 
 	 */
 
-	
-	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 	public Date getPostDate() {
-		Date date = new Date();
-		date.toString();
 		return postDate;
 	}
-	/*public void setPostDate(Date postDate) {
+	public void setPostDate(Date postDate) {
 		this.postDate = postDate;
-	}*/
-
-	public String getB_id() {
-		return b_id;
 	}
-
-	public void setB_id(String b_id) {
-		this.b_id = b_id;
+	public String getStatus() {
+		return status;
 	}
-
-	public String getB_title() {
-		return b_title;
+	public void setStatus(String status) {
+		this.status = status;
 	}
-
-	public void setB_title(String b_title) {
-		this.b_title = b_title;
+	public String getUserId() {
+		return userId;
 	}
-
-	public String getB_reason() {
-		return b_reason;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-
-	public void setB_reason(String b_reason) {
-		this.b_reason = b_reason;
+	public int getCountLike() {
+		return countLike;
 	}
-
-	public String getB_content() {
-		return b_content;
+	public void setCountLike(int countLike) {
+		this.countLike = countLike;
 	}
-
-	public void setB_content(String b_content) {
-		this.b_content = b_content;
-	}
-
-	public String getB_userId() {
-		return b_userId;
-	}
-
-	public void setB_userId(String b_userId) {
-		this.b_userId = b_userId;
-	}
-
-	public String getB_status() {
-		return b_status;
-	}
-
-	public void setB_status(String b_status) {
-		this.b_status = b_status;
-	}
-
-	
-	
 }

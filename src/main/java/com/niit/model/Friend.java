@@ -6,13 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name = "b_friend")
-@Component
+@Table(name = "B_FRIEND")
+@Component				//used for automatic bean detection using classpath scan in Spring framework.
 public class Friend extends BaseDomain implements Serializable{
 	
 	/**
@@ -25,60 +26,50 @@ public class Friend extends BaseDomain implements Serializable{
 	 */
 	
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
-	private int f_id;
+	@SequenceGenerator(name="SEQ_GEN", sequenceName="SEQ_AUTO_FRIEND_ID", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_GEN")
+	private int id;
 	
-	private String f_userId;
+	private String userId;
 	
-	private String f_friendId;
+	private String friendId;
 	
-	private String f_name;
+	private String status;	//  N = New, A = Accepted, R = Rejected
 	
-	private String f_status;	//  new / accepted / rejected
-
-	public int getF_id() {
-		return f_id;
-	}
-
-	public void setF_id(int f_id) {
-		this.f_id = f_id;
-	}
-
-	public String getF_userId() {
-		return f_userId;
-	}
-
-	public void setF_userId(String f_userId) {
-		this.f_userId = f_userId;
-	}
-
-	public String getF_friendId() {
-		return f_friendId;
-	}
-
-	public void setF_friendId(String f_friendId) {
-		this.f_friendId = f_friendId;
-	}
-
-	public String getF_name() {
-		return f_name;
-	}
-
-	public void setF_name(String f_name) {
-		this.f_name = f_name;
-	}
-
-	public String getF_status() {
-		return f_status;
-	}
-
-	public void setF_status(String f_status) {
-		this.f_status = f_status;
-	}
+	private String isOnline;
 
 	/**
 	 *  getters/setters for all the fields taken... 
 	 */
 	
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getFriendId() {
+		return friendId;
+	}
+	public void setFriendId(String friendId) {
+		this.friendId = friendId;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getIsOnline() {
+		return isOnline;
+	}
+	public void setIsOnline(String isOnline) {
+		this.isOnline = isOnline;
+	}
 }

@@ -14,7 +14,6 @@ import com.niit.dao.FriendRequestDAO;
 import com.niit.model.FriendRequest;
 
 
-
 @EnableTransactionManagement
 @Repository(value="friendRequestDAO")
 public class FriendRequestDAOImpl implements FriendRequestDAO {

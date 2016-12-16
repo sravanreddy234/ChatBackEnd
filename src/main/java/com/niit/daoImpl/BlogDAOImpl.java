@@ -1,5 +1,6 @@
 package com.niit.daoImpl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.dao.BlogDAO;
 import com.niit.model.Blog;
-
 
 
 @EnableTransactionManagement
@@ -52,6 +52,10 @@ public class BlogDAOImpl implements BlogDAO {
 	public boolean save(Blog blog){
 		try {
 			log.debug("**********Starting of save() method.");
+			
+			blog.setPostDate(new Date(System.currentTimeMillis()));	//set current time as postDate
+			blog.setStatus("N");	// N = New, R = Rejected, A = Approved 
+			
 			sessionFactory.getCurrentSession().save(blog);
 			log.debug("**********End of save() method.");
 			return true;
@@ -105,7 +109,7 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 	
 	@Transactional
-	public Blog get(String id) {
+	public Blog get(int id) {
 		log.debug("**********Starting of get() method.");
 		String hql = "from Blog where id = " + "'" + id + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
@@ -130,5 +134,23 @@ public class BlogDAOImpl implements BlogDAO {
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		log.debug("**********End of list() method.");
 		return query.list();
-	}	
+	}
+	
+	/*@Transactional
+	public Blog getLike(int id) {
+		log.debug("**********Starting of getLike() method.");
+		String hql = "countLike from Blog where id = '" + id + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		
+		@SuppressWarnings("unchecked")
+		List<Blog> list = query.list();
+		
+		if(list != null && !list.isEmpty()) {
+			log.debug("**********End of get() method.");
+			return list.get(0);
+		}
+		else {
+			return null;
+		}
+	}*/
 }

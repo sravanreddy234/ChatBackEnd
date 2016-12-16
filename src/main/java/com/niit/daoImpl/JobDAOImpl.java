@@ -1,5 +1,6 @@
 package com.niit.daoImpl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.dao.JobDAO;
 import com.niit.model.Job;
+import com.niit.model.JobApplication;
 
 
 @EnableTransactionManagement
@@ -19,6 +21,9 @@ import com.niit.model.Job;
 public class JobDAOImpl implements JobDAO {
 	
 	Logger log = Logger.getLogger(JobDAOImpl.class);
+	
+	@Autowired
+	Job job;
 	
 	@Autowired	//@Autowired annotation provides more fine-grained control over where and how autowiring should be accomplished..
 	private SessionFactory sessionFactory;
@@ -50,6 +55,10 @@ public class JobDAOImpl implements JobDAO {
 	public boolean save(Job job){
 		try {
 			log.debug("**********Starting of save() method.");
+			job.setStatus("V");	//V-Vacant	F-Filled	P-Pending
+			job.setDate(new Date(System.currentTimeMillis()));
+			job.setNoOfApplicants(0);
+			
 			sessionFactory.getCurrentSession().save(job);
 			log.debug("**********End of save() method.");
 			return true;
@@ -75,51 +84,17 @@ public class JobDAOImpl implements JobDAO {
 	}
 	
 	@Transactional
-	public boolean saveOrUpdate(Job job) {
-		try {
-			log.debug("**********Starting of saveOrUpdate() method.");
-			sessionFactory.getCurrentSession().saveOrUpdate(job);
-			log.debug("**********End of saveOrUpdate() method.");
-			return true;
-		} catch (Exception e) {
-			log.error("Error occured : " + e.getMessage());
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	@Transactional
-	public boolean delete(Job job) {
-		try {
-			log.debug("**********Starting of delete() method.");
-			sessionFactory.getCurrentSession().delete(job);
-			log.debug("**********End of delete() method.");
-			return true;
-		} catch (Exception e) {
-			log.error("Error occured : " + e.getMessage());
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	@Transactional
-	public Job get(String id) {
+	public Job get(int id) {
 		log.debug("**********Starting of get() method.");
 		String hql = "from Job where id = " + "'" + id + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		
-		@SuppressWarnings("unchecked")
 		List<Job> list = query.list();
-		
-		if(list == null) {
-			return null;
-		}
-		else {
+		if(list != null && !list.isEmpty()) {
 			return list.get(0);
 		}
+		return null;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<Job> list() {
 		log.debug("**********Starting of list() method.");
@@ -127,5 +102,72 @@ public class JobDAOImpl implements JobDAO {
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		log.debug("**********End of list() method.");
 		return query.list();
-	}	
+	}
+	
+	@Transactional
+	public List<Job> listVacantJobs() {
+		log.debug("**********Starting of listVacantJobs() method.");
+		String hql = "from Job where status = 'V'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		log.debug("**********End of listVacantJobs() method.");
+		return query.list();
+	}
+	
+	@Transactional
+	public List<JobApplication> listJobApplications() {
+		log.debug("**********Starting of listJobApplications() method.");
+		String hql = "from JobApplication";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		log.debug("**********End of listJobApplications() method.");
+		return query.list();
+	}
+	
+	@Transactional
+	public boolean applyForJob(JobApplication jobApplication) {
+		try {
+			log.debug("**********Starting of applyForJob() method.");
+			sessionFactory.getCurrentSession().save(jobApplication);
+			log.debug("**********End of applyForJob() method.");
+			return true;
+		} catch (Exception e) {
+			log.error("Error occured : " + e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	@Transactional
+	public boolean updateJobApplication(JobApplication jobApplication) {
+		try {
+			log.debug("**********Starting of updateJobApplication() method.");
+			sessionFactory.getCurrentSession().update(jobApplication);
+			log.debug("**********End of updateJobApplication() method.");
+			return true;
+		} catch (Exception e) {
+			log.error("Error occured : " + e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	@Transactional
+	public JobApplication get(String userId, String jobId) {
+		log.debug("**********Starting of get() method.");
+		String hql = "from JobApplication where userId = '" + userId + "' and jobId = '" + jobId + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		log.debug("**********End of get() method.");
+		return (JobApplication) query.list();
+	}
+	
+	@Transactional
+	public List<Job> getMyAppliedJobs(String userId) {
+		log.debug("**********Starting of getMyAppliedJobs() method.");
+		String hql = "from Job where id in (select jobId from JobApplication where userId = '" + userId + "')";
+		log.debug("******hql query : "+hql);
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		log.debug("**********End of getMyAppliedJobs() method.");
+		return query.list();
+	}
+	
+		
 }

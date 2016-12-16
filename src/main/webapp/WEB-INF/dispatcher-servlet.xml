@@ -10,7 +10,7 @@
         				http://www.springframework.org/schema/context
         				http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	
-	<!-- declare mvc to be annotation driven -->
+	 <!-- declare mvc to be annotation driven -->
 	<mvc:annotation-driven />
 	
 	<!-- activate different annotations in beans, whether they are defined in XML or through component scanning -->

@@ -56,15 +56,15 @@ public class ForumCommentController {
 	 * @param forumComment
 	 * @return
 	 */
-	@PostMapping(value = "/forumComment/")
+	/*@PostMapping(value = "/forumComment/")
 	public ResponseEntity<ForumComment> createForumComment(@RequestBody ForumComment forumComment) {
-		if(forumCommentDAO.get(forumComment.getFc_id()) == null) {
+		if(forumCommentDAO.get(forumComment.getForumId()) == null) {
 			forumCommentDAO.save(forumComment);
 			return new ResponseEntity<ForumComment>(forumComment, HttpStatus.OK);
 		}
-		forumComment.setErrorMessage("ForumComment already exist with id : " +forumComment.getFc_id());
+		forumComment.setErrorMessage("ForumComment already exist with id : " +forumComment.getForumId());
 		return new ResponseEntity<ForumComment>(HttpStatus.OK);
-	}
+	}*/
 	
 	/**
 	 * 	http://localhost:8081/Binder/forumComment/{id}
@@ -76,7 +76,7 @@ public class ForumCommentController {
 	public ResponseEntity<ForumComment> updateForumComment(@PathVariable("id") String id, @RequestBody ForumComment forumComment) {
 		if(forumCommentDAO.get(id) == null) {
 			forumComment = new ForumComment();
-			forumComment.setErrorMessage("No forumComment exist with id : " +forumComment.getFc_id());
+			forumComment.setErrorMessage("No forumComment exist with id : " +forumComment.getForumId());
 			return new ResponseEntity<ForumComment>(forumComment, HttpStatus.NOT_FOUND);
 		}
 		forumCommentDAO.update(forumComment);

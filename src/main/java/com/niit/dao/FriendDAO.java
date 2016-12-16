@@ -7,21 +7,27 @@ import org.springframework.stereotype.Repository;
 import com.niit.model.Friend;
 
 
-
 @Repository		//@Repository annotation is a specialization of the @Component annotation with similar use and functionality...
 public interface FriendDAO {
 
-	// Declare all CRUD Operations...
+	/**
+	 *  Declare all CRUD Operations...
+	 * 
+	 */
 	
-	public boolean save(Friend friend);
+	public boolean save(Friend friend);				//implemented...
 	
-	public boolean update(Friend friend);
+	public boolean update(Friend friend);							//implemented...
+			
+	public Friend getSelectedFriend(String userId, String friendId);		//implemented
+	public Friend get(int id);
+	public List<Friend> getMyFriends(String userId);				//implemented...
 	
-	public boolean saveOrUpdate(Friend friend);
-			
-	public boolean delete(Friend friend);
-			
-	public Friend get(String id);
-			
-	public List<Friend> list();
+	public List<Friend> getNewFriendRequests(String userId);		//implemented...
+	public void rejectFriend(String userId);						//implemented...
+	
+	public void setOnline(String userId);					//implemented...
+	public void setOffline(String userId);					//implemented...
+	
+	public boolean isFriend(String userId, String friendId);		//implemented...
 }

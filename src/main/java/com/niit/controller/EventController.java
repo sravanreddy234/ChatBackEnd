@@ -18,7 +18,6 @@ import com.niit.dao.EventDAO;
 import com.niit.model.Event;
 
 
-
 @RestController
 public class EventController {
 	
@@ -28,18 +27,7 @@ public class EventController {
 	EventDAO eventDAO;
 	
 	/**
-	 * ----- url's related to event -----
-	 * 
-	 *	a. fetch all events : http://localhost:8081/Binder/events				//-----Y-----
-	 *	b. save event : http://localhost:8081/Binder/event/						//-----N-----(500 internal server error)
-	 *	c. update existing event : http://localhost:8081/Binder/event/{id}		//-----Y-----
-	 * 	d. delete event : http://localhost:8081/Binder/event/{id}				//-----Y-----
-	 * 	e. fetch event by id : http://localhost:8081/Binder/event/{id}			//-----Y-----
-	 * 
-	 */
-	
-	/**
-	 * 	http://localhost:8081/Binder/events
+	 * 	http://localhost:8081/Binder/events									[working]
 	 * @return
 	 */
 	@GetMapping(value = "/events")
@@ -54,36 +42,36 @@ public class EventController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/event/
+	 * 	http://localhost:8081/Binder/event/									[working]
 	 * @param event
 	 * @return
 	 */
 	@PostMapping(value = "/event/")
 	public ResponseEntity<Event> createEvent(@RequestBody Event event) {
 		log.debug("**********Starting of createEvent() method.");
-		if(eventDAO.get(event.getE_id()) == null) {
+		if(eventDAO.get(event.getId()) == null) {
 			eventDAO.save(event);
 			log.debug("**********End of createEvent() method.");
 			return new ResponseEntity<Event>(event, HttpStatus.OK);
 		}
-		event.setErrorMessage("Event already exist with id : " +event.getE_id());
-		log.error("Event already exist with id : " +event.getE_id());
+		event.setErrorMessage("Event already exist with id : " +event.getId());
+		log.error("Event already exist with id : " +event.getId());
 		return new ResponseEntity<Event>(HttpStatus.OK);
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/event/{id}
+	 * 	http://localhost:8081/Binder/event/{id}								[working]
 	 * @param id
 	 * @param event
 	 * @return
 	 */
 	@PutMapping(value = "/event/{id}")
-	public ResponseEntity<Event> updateEvent(@PathVariable("id") String id, @RequestBody Event event) {
+	public ResponseEntity<Event> updateEvent(@PathVariable("id") int id, @RequestBody Event event) {
 		log.debug("**********Starting of updateEvent() method.");
 		if(eventDAO.get(id) == null) {
 			event = new Event();
-			event.setErrorMessage("No event exist with id : " +event.getE_id());
-			log.error("No event exist with id : " +event.getE_id());
+			event.setErrorMessage("No event exist with id : " +event.getId());
+			log.error("No event exist with id : " +event.getId());
 			return new ResponseEntity<Event>(event, HttpStatus.NOT_FOUND);
 		}
 		eventDAO.update(event);
@@ -92,12 +80,12 @@ public class EventController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/event/{id}
+	 * 	http://localhost:8081/Binder/event/{id}								[working]
 	 * @param id
 	 * @return
 	 */
 	@DeleteMapping(value = "/event/{id}")
-	public ResponseEntity<Event> deleteEvent(@PathVariable("id") String id) {
+	public ResponseEntity<Event> deleteEvent(@PathVariable("id") int id) {
 		log.debug("**********Starting of deleteEvent() method.");
 		Event event = eventDAO.get(id);
 		if(event == null) {
@@ -112,12 +100,12 @@ public class EventController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/event/{id}
+	 * 	http://localhost:8081/Binder/event/{id}								[working]
 	 * @param id
 	 * @return
 	 */
 	@GetMapping(value = "/event/{id}")
-	public ResponseEntity<Event> getEvent(@PathVariable("id") String id) {
+	public ResponseEntity<Event> getEvent(@PathVariable("id") int id) {
 		log.debug("**********Starting of getEvent() method.");
 		Event event = eventDAO.get(id);
 		if(event == null) {
