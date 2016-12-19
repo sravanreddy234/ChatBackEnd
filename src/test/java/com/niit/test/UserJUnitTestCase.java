@@ -48,17 +48,19 @@ public class UserJUnitTestCase {
 	@Test
 	public void addUser() {
 		users.setId("abc001");
-		users.setName("Sudipta Samanta");
-		users.setPassword("sudipta001");
+		users.setName("sravan");
+		users.setPassword("sravan");
 		users.setGender("male");
-		users.setEmail("sudiptajijo@gmail.com");
-		users.setPhone("8350054367");
+		users.setEmail("sravan@gmail.com");
+		users.setPhone("8350078895");
 		users.setRole("EMPLOYEE");
+		//users.setImage(null);
+		//users.setPhotos(null);
 		
 		assertEquals(userDAO.save(users), true);
 	}
 	
-	//@Test
+	/*//@Test
 	public void updateUser() {
 		users.setId("arpan001");
 		users.setName("Sudipta Samanta");
@@ -76,5 +78,5 @@ public class UserJUnitTestCase {
 	public void getUser() {
 		
 		assertEquals(userDAO.get("sovan001").getName(), "Sovan Jana");
-	}
+	}*/
 }

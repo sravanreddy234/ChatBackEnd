@@ -45,9 +45,9 @@ public class Users extends BaseDomain implements Serializable {
 	
 	private String isOnline;
 	
-	private String image;
+	//private String image;
 	
-	private String photos;
+	//private String photos;
 	
 	@Transient
 	private MultipartFile file;
@@ -104,23 +104,23 @@ public class Users extends BaseDomain implements Serializable {
 	public void setIsOnline(String isOnline) {
 		this.isOnline = isOnline;
 	}
-	public String getImage() {
+	/*public String getImage() {
 		return image;
 	}
 	public void setImage(String image) {
 		this.image = image;
-	}
+	}*/
 	public MultipartFile getFile() {
 		return file;
 	}
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-	public String getPhotos() {
+	/*public String getPhotos() {
 		return photos;
 	}
 	public void setPhotos(String photos) {
 		this.photos = photos;
-	}
+	}*/
 	
 }

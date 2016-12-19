@@ -27,8 +27,8 @@ public class UserTestCase {
 		users.setEmail("prantik@gmail.com");
 		users.setPhone("1010101010");
 		users.setRole("EMPLOYEE");
-		users.setImage(null);
-		users.setPhotos(null);
+		//users.setImage(null);
+		//users.setPhotos(null);
 				
 		System.out.println("reached just before saving the details...");
 		

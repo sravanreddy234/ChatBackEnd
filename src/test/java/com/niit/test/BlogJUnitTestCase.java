@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -41,18 +42,18 @@ public class BlogJUnitTestCase {
 		assertEquals(blogDAO.list().size(), 1);
 	}
 		
-	//@Test
+	@Test
 	public void addBlog() {
-		//blog.setId(3);
-		blog.setTitle("#7 Blog");
+		//blog.setId(11);
+		blog.setTitle("New Blog");
 		blog.setReason("Testing purpose");
-		blog.setContent("This is my seventh blog...");
-		blog.setUserId("sudip001");
+		blog.setContent("This is first blog...");
+		blog.setUserId("sravan");
 		
 		assertEquals(blogDAO.save(blog), true);
 	}
 	
-	//@Test
+	/*//@Test
 	public void updateBlog() {
 		//blog.setId("arpan001");
 		blog.setTitle("#1 Blog");
@@ -61,18 +62,18 @@ public class BlogJUnitTestCase {
 		blog.setStatus("approved");
 		
 		assertEquals(blogDAO.update(blog), true);
-	}
+	}*/
 	
-	//@Test
+	/*@Test
 	public void deleteBlog() {
-		blog.setId(1);
+		blog.setId(2);
 		
 		assertEquals(blogDAO.delete(blog), true);
-	}
+	}*/
 	
-	//@Test
+	/*//@Test
 	public void getBlog() {
 		
 		//assertEquals(blogDAO.get("blog001").getTitle(), "#1 Blog");
-	}
+	}*/
 }

@@ -28,7 +28,7 @@ import com.niit.model.Users;
 
 
 @Configuration						//@Configuration indicates that the class can be used by the Spring IoC container as a source of bean definitions.
-@ComponentScan("com.niit.LetzChat")		//@ComponentScan annotation is used to specify the base packages to scan.
+@ComponentScan("com.niit.ChatBackEnd")		//@ComponentScan annotation is used to specify the base packages to scan.
 //@ComponentScan(basePackages = "com.niit.binder", excludeFilters = @Filter(type = FilterType.ANNOTATION, value = AppConfig.class))
 @EnableTransactionManagement		/**when we are using @Configuration i.e XML free configuration and need to 
 									 * connect to database with hibernate. We need to use @EnableTransactionManagement.
@@ -44,8 +44,8 @@ public class ApplicationContextConfig {
 				/*--- Database connection settings ---*/
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");		//specify the driver...
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");		//specify the db_url...
-		dataSource.setUsername("COLL");		//specify the db_username...
-		dataSource.setPassword("COLL");		//specify the db_password...
+		dataSource.setUsername("SRAVAN1");		//specify the db_username...
+		dataSource.setPassword("sravan");		//specify the db_password...
 		
 
 		Properties connectionProperties = new Properties();
