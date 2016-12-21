@@ -102,7 +102,7 @@ public class ForumCommentDAOImpl implements ForumCommentDAO {
 	}
 	
 	@Transactional
-	public ForumComment get(String id) {
+	public ForumComment get(int id) {
 		log.debug("**********Starting of get() method.");
 		String hql = "from ForumComment where id = " + "'" + id + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);

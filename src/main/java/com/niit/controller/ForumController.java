@@ -34,7 +34,7 @@ public class ForumController {
 	Forum forum;
 	
 	/**
-	 * 	http://localhost:8081/Binder/forums								[working]
+	 * 	http://localhost:8088/ChatBackEnd/forums								[working]
 	 * @return
 	 */
 	@GetMapping(value = "/forums")
@@ -49,7 +49,7 @@ public class ForumController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/forum/									[working]
+	 * 	http://localhost:8088/ChatBackEnd/forum/									[working]
 	 * @param forum
 	 * @return
 	 */
@@ -72,7 +72,7 @@ public class ForumController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/forum/{id}								[working]
+	 * 	http://localhost:8088/ChatBackEnd/forum/{id}								[working]
 	 * @param id
 	 * @param forum
 	 * @return
@@ -92,7 +92,7 @@ public class ForumController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/forum/{id}								[working]
+	 * 	http://localhost:8088/ChatBackEnd/forum/{id}								[working]
 	 * @param id
 	 * @return
 	 */
@@ -112,7 +112,7 @@ public class ForumController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/forum/{id}							[working]
+	 * 	http://localhost:8088/ChatBackEnd/forum/{id}							[working]
 	 * @param id
 	 * @return
 	 */
@@ -131,7 +131,7 @@ public class ForumController {
 	}
 	
 	/**
-	 * http://localhost:8081/Binder/forum/likeForum/{id}			[working]
+	 * http://localhost:8088/ChatBackEnd/forum/likeForum/{id}			[working]
 	 * @param id
 	 * @param forum
 	 * @return
@@ -149,7 +149,7 @@ public class ForumController {
 	}
 	
 	/**
-	 * http://localhost:8081/Binder/forum/countComment/{id}			[working]
+	 * http://localhost:8088/ChatBackEnd/forum/countComment/{id}			[working]
 	 * @param id
 	 * @param forum
 	 * @return
@@ -169,9 +169,9 @@ public class ForumController {
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|Forum Comment Area|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
 	/**
-	 * http://localhost:8081/Binder/forumComments						[working]
+	 * http://localhost:8088/ChatBackEnd/forumComments						[working]
 	 * @return
-	 */
+	 *//*
 	@GetMapping(value = "/forumComments/{forumId}")
 	public ResponseEntity<List<ForumComment>> listForumComments(@PathVariable("forumId") String forumId) {
 		log.debug("**********Starting of listForumComments() method.");
@@ -183,12 +183,12 @@ public class ForumController {
 		return new ResponseEntity<List<ForumComment>>(forumComment, HttpStatus.OK);
 	}
 	
-	/**
-	 * http://localhost:8081/Binder/forumComment/					[working]
+	*//**
+	 * http://localhost:8088/ChatBackEnd/forumComment/					[working]
 	 * @param forumComment
 	 * @param session
 	 * @return
-	 */
+	 *//*
 	@PostMapping(value = "/forumComment/")
 	public ResponseEntity<ForumComment> createForumComment(@RequestBody ForumComment forumComment, HttpSession session) {
 		log.debug("**********Starting of createForumComment() method.");
@@ -200,11 +200,11 @@ public class ForumController {
 		return new ResponseEntity<ForumComment>(forumComment, HttpStatus.OK);
 	}
 	
-	/**
-	 * http://localhost:8081/Binder/forumComment/{id}							[working]
+	*//**
+	 * http://localhost:8088/ChatBackEnd/forumComment/{id}							[working]
 	 * @param id
 	 * @return
-	 */
+	 *//*
 	@GetMapping(value = "/forumComment/{id}")
 	public ResponseEntity<ForumComment> getForumComment(@PathVariable("id") int id) {
 		log.debug("**********Starting of getForumComment() method.");
@@ -217,5 +217,5 @@ public class ForumController {
 		}
 		log.debug("**********End of getForumComment() method.");
 		return new ResponseEntity<ForumComment>(forumComment, HttpStatus.OK);
-	}
+	}*/
 }

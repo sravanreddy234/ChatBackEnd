@@ -35,7 +35,7 @@ public class JobController {
 	JobDAO jobDAO;
 
 	/**
-	 * http://localhost:8081/Binder/jobs 					//working
+	 * http://localhost:8088/ChatBackEnd/jobs 					//working
 	 * 
 	 * @return
 	 */
@@ -61,7 +61,7 @@ public class JobController {
 	}
 
 	/**
-	 * http://localhost:8081/Binder/job/ 					//working
+	 * http://localhost:8088/ChatBackEnd/job/ 					//working
 	 * 
 	 * @param job
 	 * @return
@@ -80,7 +80,7 @@ public class JobController {
 	}
 
 	/**
-	 * http://localhost:8081/Binder/job/{id} 					//working
+	 * http://localhost:8088/ChatBackEnd/job/{id} 					//working
 	 * 
 	 * @param id
 	 * @param job
@@ -101,7 +101,7 @@ public class JobController {
 	}
 
 	/**
-	 * http://localhost:8081/Binder/job/{id} 					//working
+	 * http://localhost:8088/ChatBackEnd/job/{id} 					//working
 	 * 
 	 * @param id
 	 * @return
@@ -121,7 +121,7 @@ public class JobController {
 	}
 
 	/**
-	 * http://localhost:8081/Binder/getMyAppliedJobs
+	 * http://localhost:8088/ChatBackEnd/getMyAppliedJobs
 	 * 
 	 * @param httpSession
 	 * @return
@@ -139,7 +139,7 @@ public class JobController {
 	}
 
 	/**
-	 * http://localhost:8081/Binder/callForInterview/{userId}/{jobId}
+	 * http://localhost:8088/ChatBackEnd/callForInterview/{userId}/{jobId}
 	 * @param userId
 	 * @param jobId
 	 * @param jobApplication
@@ -161,7 +161,7 @@ public class JobController {
 	}
 
 	/**
-	 * http://localhost:8081/Binder/rejectJobApplication/{userId}/{jobId}
+	 * http://localhost:8088/ChatBackEnd/rejectJobApplication/{userId}/{jobId}
 	 * @param userId
 	 * @param jobId
 	 * @param jobApplication
@@ -183,7 +183,7 @@ public class JobController {
 	}
 
 	/**
-	 * http://localhost:8081/Binder/listVacantJobs //working
+	 * http://localhost:8088/ChatBackEnd/listVacantJobs //working
 	 * 
 	 * @return
 	 */
@@ -199,7 +199,7 @@ public class JobController {
 	}
 
 	/**
-	 * http://localhost:8081/Binder/jobApplied
+	 * http://localhost:8088/ChatBackEnd/jobApplied
 	 * 
 	 * @param jobApplication
 	 * @param httpSession

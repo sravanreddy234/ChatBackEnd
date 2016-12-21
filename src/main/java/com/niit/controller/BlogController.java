@@ -31,7 +31,7 @@ public class BlogController {
 	BlogDAO blogDAO;
 	
 	/**
-	 * 	http://localhost:8081/Binder/blogs			//working
+	 * 	http://localhost:8088/ChatBackEnd/blogs			//working
 	 * @return
 	 */
 	@GetMapping(value = "/blogs")
@@ -46,7 +46,7 @@ public class BlogController {
 	}
 	
 	/**
-	 * http://localhost:8081/Binder/blog/			//working
+	 * http://localhost:8088/ChatBackEnd/blog/			//working
 	 * @param blog
 	 * @param session
 	 * @return
@@ -70,7 +70,7 @@ public class BlogController {
 	}
 
 	/**
-	 * 	http://localhost:8081/Binder/blog/{id}			//working
+	 * 	http://localhost:8088/ChatBackEnd/blog/{id}			//working
 	 * @param id
 	 * @param blog
 	 * @return
@@ -90,7 +90,7 @@ public class BlogController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/blog/{id}			//working
+	 * 	http://localhost:8088/ChatBackEnd/blog/{id}			//working
 	 * @param id
 	 * @return
 	 */
@@ -110,7 +110,7 @@ public class BlogController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/blog/{id}			//working
+	 * 	http://localhost:8088/ChatBackEnd/blog/{id}			//working
 	 * @param id
 	 * @return
 	 */
@@ -130,7 +130,7 @@ public class BlogController {
 		
 	
 	/**
-	 * http://localhost:8081/Binder/approveBlog/{id}
+	 * http://localhost:8088/ChatBackEnd/approveBlog/{id}
 	 * @param id
 	 * @param blog
 	 * @return
@@ -146,7 +146,7 @@ public class BlogController {
 		return new ResponseEntity<Blog> (blog, HttpStatus.OK);
 	}
 	/**
-	 * http://localhost:8081/Binder/rejectBlog/{id}
+	 * http://localhost:8088/ChatBackEnd/rejectBlog/{id}
 	 * @param id
 	 * @param blog
 	 * @return
@@ -163,7 +163,7 @@ public class BlogController {
 	}
 	
 	/**
-	 * http://localhost:8081/Binder/likeBlog/{id}
+	 * http://localhost:8088/ChatBackEnd/likeBlog/{id}
 	 * @param id
 	 * @param blog
 	 * @return

@@ -40,7 +40,7 @@ public class UserController {
 	FriendDAO friendDAO;
 	
 	/**
-	 * 	http://localhost:8081/Binder/users			//working
+	 * 	http://localhost:8088/ChatBackEnd/users			//working
 	 * @return
 	 */
 	@GetMapping(value = "/users")
@@ -55,7 +55,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/searchForFriends			//working
+	 * 	http://localhost:8088/ChatBackEnd/searchForFriends			//working
 	 * @return
 	 */
 	@GetMapping(value = "/searchForFriends")
@@ -80,7 +80,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/user/			//working
+	 * 	http://localhost:8088/ChatBackEnd/user/			//working
 	 * @param users
 	 * @return
 	 */
@@ -98,7 +98,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/user/{id}			//working
+	 * 	http://localhost:8088/ChatBackEnd/user/{id}			//working
 	 * @param id
 	 * @param users
 	 * @return
@@ -121,7 +121,7 @@ public class UserController {
 	}
 		
 	/**
-	 * 	http://localhost:8081/Binder/user/{id}			//working
+	 * 	http://localhost:8088/ChatBackEnd/user/{id}			//working
 	 * @param id
 	 * @return
 	 */
@@ -140,7 +140,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/user/login			//working
+	 * 	http://localhost:8088/ChatBackEnd/user/login			//working
 	 * @param users
 	 * @param session
 	 * @return
@@ -168,7 +168,7 @@ public class UserController {
 	}
 	
 	/**
-	 * http://localhost:8081/Binder/user/logout			//not working
+	 * http://localhost:8088/ChatBackEnd/user/logout			//not working
 	 * @param users
 	 * @param session
 	 * @return

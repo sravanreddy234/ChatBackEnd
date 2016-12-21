@@ -31,7 +31,7 @@ public class FriendController {
 	FriendDAO friendDAO;
 	
 	/**
-	 * http://localhost:8081/Binder/user/myFriends			//working
+	 * http://localhost:8088/ChatBackEnd/user/myFriends			//working
 	 * @param session
 	 * @return
 	 */
@@ -45,7 +45,7 @@ public class FriendController {
 	}
 	
 	/**
-	 * http://localhost:8081/Binder/user/friend/{id}				//working
+	 * http://localhost:8088/ChatBackEnd/user/friend/{id}				//working
 	 * @param id
 	 * @return
 	 */
@@ -58,7 +58,7 @@ public class FriendController {
 	}
 	
 	/**
-	 * http://localhost:8081/Binder/user/newFriendRequests			//working
+	 * http://localhost:8088/ChatBackEnd/user/newFriendRequests			//working
 	 * @param session
 	 * @return
 	 */
@@ -75,7 +75,7 @@ public class FriendController {
 	}
 	
 	/**
-	 * http://localhost:8081/Binder/user/addFriend/{friendId}			//working
+	 * http://localhost:8088/ChatBackEnd/user/addFriend/{friendId}			//working
 	 * @param friendId
 	 * @param session
 	 * @return
@@ -98,7 +98,7 @@ public class FriendController {
 	}
 	
 	/**
-	 * http://localhost:8081/Binder/user/rejectFriend/{id}					//working
+	 * http://localhost:8088/ChatBackEnd/user/rejectFriend/{id}					//working
 	 * @param id
 	 * @param friend
 	 * @param session
@@ -116,7 +116,7 @@ public class FriendController {
 	}
 	
 	/**
-	 * http://localhost:8081/Binder/user/acceptFriend/{id}						//working
+	 * http://localhost:8088/ChatBackEnd/user/acceptFriend/{id}						//working
 	 * @param id
 	 * @param friend
 	 * @param session
@@ -134,7 +134,7 @@ public class FriendController {
 	}	
 	
 	/**
-	 * http://localhost:8081/Binder/user/unFriend/{id}						//working
+	 * http://localhost:8088/ChatBackEnd/user/unFriend/{id}						//working
 	 * @param id
 	 * @param friend
 	 * @param session

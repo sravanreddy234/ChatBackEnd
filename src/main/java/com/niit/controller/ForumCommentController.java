@@ -30,16 +30,16 @@ public class ForumCommentController {
 	/**
 	 * ----- url's related to forumComment -----
 	 * 
-	 *	a. fetch all forumComments : http://localhost:8081/Binder/forumComments				//
-	 *	b. save forumComment : http://localhost:8081/Binder/forumComment/					//
-	 *	c. update existing forumComment : http://localhost:8081/Binder/forumComment/{id}	//
-	 * 	d. delete forumComment : http://localhost:8081/Binder/forumComment/{id}				//
-	 * 	e. fetch forumComment by id : http://localhost:8081/Binder/forumComment/{id}		//
+	 *	a. fetch all forumComments : http://localhost:8088/ChatBackEnd/forumComments				//
+	 *	b. save forumComment : http://localhost:8088/ChatBackEnd/forumComment/					//
+	 *	c. update existing forumComment : http://localhost:8088/ChatBackEnd/forumComment/{id}	//
+	 * 	d. delete forumComment : http://localhost:8088/ChatBackEnd/forumComment/{id}				//
+	 * 	e. fetch forumComment by id : http://localhost:8088/ChatBackEnd/forumComment/{id}		//
 	 * 
 	 */
 	
 	/**
-	 * 	http://localhost:8081/Binder/forumComments
+	 * 	http://localhost:8088/ChatBackEnd/forumComments
 	 * @return
 	 */
 	@GetMapping(value = "/forumComments")
@@ -52,11 +52,11 @@ public class ForumCommentController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/forumComment/
+	 * 	http://localhost:8088/ChatBackEnd/forumComment/
 	 * @param forumComment
 	 * @return
 	 */
-	/*@PostMapping(value = "/forumComment/")
+	@PostMapping(value = "/forumComment/")
 	public ResponseEntity<ForumComment> createForumComment(@RequestBody ForumComment forumComment) {
 		if(forumCommentDAO.get(forumComment.getForumId()) == null) {
 			forumCommentDAO.save(forumComment);
@@ -64,16 +64,16 @@ public class ForumCommentController {
 		}
 		forumComment.setErrorMessage("ForumComment already exist with id : " +forumComment.getForumId());
 		return new ResponseEntity<ForumComment>(HttpStatus.OK);
-	}*/
+	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/forumComment/{id}
+	 * 	http://localhost:8088/ChatBackEnd/forumComment/{id}
 	 * @param id
 	 * @param forumComment
 	 * @return
 	 */
 	@PutMapping(value = "/forumComment/{id}")
-	public ResponseEntity<ForumComment> updateForumComment(@PathVariable("id") String id, @RequestBody ForumComment forumComment) {
+	public ResponseEntity<ForumComment> updateForumComment(@PathVariable("id") int id, @RequestBody ForumComment forumComment) {
 		if(forumCommentDAO.get(id) == null) {
 			forumComment = new ForumComment();
 			forumComment.setErrorMessage("No forumComment exist with id : " +forumComment.getForumId());
@@ -84,12 +84,12 @@ public class ForumCommentController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/forumComment/{id}
+	 * 	http://localhost:8088/ChatBackEnd/forumComment/{id}
 	 * @param id
 	 * @return
 	 */
 	@DeleteMapping(value = "/forumComment/{id}")
-	public ResponseEntity<ForumComment> deleteForumComment(@PathVariable("id") String id) {
+	public ResponseEntity<ForumComment> deleteForumComment(@PathVariable("id") int id) {
 		ForumComment forumComment = forumCommentDAO.get(id);
 		if(forumComment == null) {
 			forumComment = new ForumComment();
@@ -101,12 +101,12 @@ public class ForumCommentController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/forumComment/{id}
+	 * 	http://localhost:8088/ChatBackEnd/forumComment/{id}
 	 * @param id
 	 * @return
 	 */
 	@GetMapping(value = "/forumComment/{id}")
-	public ResponseEntity<ForumComment> getForumComment(@PathVariable("id") String id) {
+	public ResponseEntity<ForumComment> getForumComment(@PathVariable("id") int id) {
 		ForumComment forumComment = forumCommentDAO.get(id);
 		if(forumComment == null) {
 			forumComment = new ForumComment();

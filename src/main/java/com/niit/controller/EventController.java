@@ -27,7 +27,7 @@ public class EventController {
 	EventDAO eventDAO;
 	
 	/**
-	 * 	http://localhost:8081/Binder/events									[working]
+	 * 	http://localhost:8088/ChatBackEnd/events									[working]
 	 * @return
 	 */
 	@GetMapping(value = "/events")
@@ -42,7 +42,7 @@ public class EventController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/event/									[working]
+	 * 	http://localhost:8088/ChatBackEnd/event/									[working]
 	 * @param event
 	 * @return
 	 */
@@ -60,7 +60,7 @@ public class EventController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/event/{id}								[working]
+	 * 	http://localhost:8088/ChatBackEnd/event/{id}								[working]
 	 * @param id
 	 * @param event
 	 * @return
@@ -80,7 +80,7 @@ public class EventController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/event/{id}								[working]
+	 * 	http://localhost:8088/ChatBackEnd/event/{id}								[working]
 	 * @param id
 	 * @return
 	 */
@@ -100,7 +100,7 @@ public class EventController {
 	}
 	
 	/**
-	 * 	http://localhost:8081/Binder/event/{id}								[working]
+	 * 	http://localhost:8088/ChatBackEnd/event/{id}								[working]
 	 * @param id
 	 * @return
 	 */

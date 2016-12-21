@@ -19,7 +19,7 @@ public interface ForumCommentDAO {
 		
 		public boolean delete(ForumComment forumComment);
 		
-		public ForumComment get(String id);
+		public ForumComment get(int id);
 		
 		public List<ForumComment> list();
 }

@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.niit</groupId>
 	<artifactId>chat</artifactId>
-	<packaging>war</packaging>
+	 <packaging>war</packaging>
 	<version>v1.0.0</version>
-	<name>Chat Maven Webapp</name>
+	<name>chat Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 	<build>
-		<finalName>Chat</finalName>
+		<finalName>chat</finalName>
 	</build>
 
 	<dependencies>
